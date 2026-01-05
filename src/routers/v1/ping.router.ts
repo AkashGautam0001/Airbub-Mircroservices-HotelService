@@ -5,6 +5,6 @@ import { pingSchema } from "../../validators/ping.validator.js";
 
 const pingRouter = express.Router();
 
-pingRouter.get("/ping", validateRequestBody(pingSchema), pingHandler); //resolve it
+pingRouter.get("/", validateRequestBody(pingSchema), pingHandler); //resolve it
 
 export default pingRouter;

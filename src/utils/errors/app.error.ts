@@ -1,6 +1,7 @@
 export interface AppError extends Error {
   statusCode: number;
 }
+
 export class InternalServerError implements AppError {
   statusCode: number;
   message: string;
