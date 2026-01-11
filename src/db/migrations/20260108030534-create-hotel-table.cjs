@@ -12,6 +12,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.sequelize.query(`DROP TABLE IF EXISTS "hotels"`);
+    await queryInterface.sequelize.query(`DROP TABLE IF EXISTS hotels`);
   },
 };
