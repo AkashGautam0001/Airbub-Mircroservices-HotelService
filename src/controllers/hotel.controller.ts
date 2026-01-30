@@ -1,35 +1,54 @@
 import { Request, Response, NextFunction } from "express";
-import { createHotelService, getHotelByIdService } from "../services/hotel.service.js";
+import {
+  createHotelService,
+  deleteHotelService,
+  getAllHotelsService,
+  getHotelByIdService,
+  updateHotelService
+} from "../services/hotel.service.js";
+import { StatusCodes } from "http-status-codes";
 
 export async function createHotelHandler(req: Request, res: Response, next: NextFunction) {
   const hotelResponse = await createHotelService(req.body);
-  res.status(201).json({
-    message: "Hotel created successfully",
+  res.status(StatusCodes.CREATED).json({
     success: true,
+    message: "Hotel created successfully",
     data: hotelResponse
   });
 }
 
 export async function getHotelByIdHandler(req: Request, res: Response, next: NextFunction) {
   const hotelResponse = await getHotelByIdService(Number(req.params.id));
-  res.status(200).json({
-    message: "Hotel found successfully",
+  res.status(StatusCodes.OK).json({
     success: true,
+    message: "Hotel found successfully",
     data: hotelResponse
   });
 }
 
-// TODO: implement this
 export async function getAllHotelsHandler(req: Request, res: Response, next: NextFunction) {
-  res.status(501);
+  const hotelResponse = await getAllHotelsService();
+  res.status(StatusCodes.OK).json({
+    success: true,
+    message: "All Hotels found successfully",
+    data: hotelResponse
+  });
 }
 
-// TODO: implement this
 export async function deleteHotelHandler(req: Request, res: Response, next: NextFunction) {
-  res.status(501);
+  const hotelResponse = await deleteHotelService(Number(req.params.id));
+  res.status(StatusCodes.OK).json({
+    success: true,
+    message: "Hotel deleted successfully",
+    data: hotelResponse
+  });
 }
 
-// TODO: implement this
 export async function updateHotelHandler(req: Request, res: Response, next: NextFunction) {
-  res.status(501);
+  const hotelResponse = await updateHotelService(Number(req.params.id), req.body);
+  res.status(StatusCodes.OK).json({
+    success: true,
+    message: "Hotel updated successfully",
+    data: hotelResponse
+  });
 }
